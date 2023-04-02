@@ -3,22 +3,29 @@
   "private": true,
   "scripts": {
     "build": "nuxt build",
-    "deploy": "firebase deploy --only hosting",
+    "deploy": "nuxt build && firebase deploy --only hosting --project goals-blog",
     "dev": "nuxt dev",
     "start": "nuxt start",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
+    "postinstall": "nuxt prepare",
+    "build-functions": "npx webpack --config webpack.functions.config.js"
   },
   "devDependencies": {
     "@nuxt/types": "^2.16.3",
     "@nuxt/typescript-build": "^3.0.1",
+    "firebase-admin": "^11.5.0",
+    "firebase-functions": "^4.2.1",
+    "firebase-functions-test": "^3.0.0",
     "nuxt": "^3.3.2",
     "sass-loader": "^13.2.2"
   },
   "dependencies": {
     "firebase": "^9.18.0",
     "sass": "^1.60.0",
-    "typescript": "^5.0.2"
+    "ts-loader": "^9.4.2",
+    "typescript": "^5.0.2",
+    "webpack-cli": "^5.0.1",
+    "webpack-node-externals": "^3.0.0"
   }
 }

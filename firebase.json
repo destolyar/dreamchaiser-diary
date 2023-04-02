@@ -3,15 +3,31 @@
     "rules": "firestore.rules",
     "indexes": "firestore.indexes.json"
   },
-  "hosting": {
-    "source": ".",
-    "ignore": [
-      "firebase.json",
-      "**/.*",
-      "**/node_modules/**"
-    ],
-    "frameworksBackend": {
-      "region": "us-east1"
+  "functions": {
+    "source": ".output/server",
+    "runtime": "nodejs16",
+    "main": "index.mjs"
+  },
+  "hosting": [
+    {
+      "site": "goals-blog",
+      "public": ".output/public",
+      "cleanUrls": true,
+      "rewrites": [{
+        "source": "**",
+        "run": {
+          "serviceId": "dreamchaiser-diary",
+          "region": "us-east1"
+        }
+      }],
+      "ignore": [
+        "firebase.json",
+        "**/.*",
+        "**/node_modules/**"
+      ]
     }
+  ],
+  "projects": {
+    "default": "goals-blog"
   }
 }
